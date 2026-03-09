@@ -1,0 +1,18 @@
+.env
+.env.local
+.env.*.local
+
+vendor/
+databases/
+
+
+############################
+# OS FILES / FOLDERS
+############################
+
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
