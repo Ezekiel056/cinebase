@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./app:/var/www/html
+      - ./:/var/www/html
 
   # DATABASES --------
   mongodb:
@@ -18,10 +18,12 @@ services:
     restart: always
 
   mysql:
-    image: mysql:latest
     volumes:
       - ./databases/mysql:/var/lib/mysql
       - ./docker/databases_init/mysql/:/docker-entrypoint-initdb.d
+
+    image: mysql:latest
+
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
