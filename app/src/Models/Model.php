@@ -10,6 +10,7 @@ abstract class Model
 {
 
     protected pdo $mysql;
+    protected string $tableName;
 
     public function __construct()
     {

@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+:root {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+
+  --primary-color: #f8b607;
+  --primary-color-light: #f8b80766;
+  --secondary-color: #900806;
+  --background-color: #1a1a1a;
+
+  --primary-text-color: var(--primary-color);
+  --secondary-text-color: #fff;
+}
+
+body {
+  background-color: var(--background-color);
+}

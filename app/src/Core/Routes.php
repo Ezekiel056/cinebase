@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Controllers\HomeController;
+use App\Controllers\MovieController;
+use App\Controllers\UserController;
 
 const ROUTES = [
 
     'GET' => [
 
-        '/' => [HomeController::class, 'home'],
+        '/'         =>  [[MovieController::class,       'home'],        true],
+        '/login'    =>  [[UserController::class,        'login'],       false],
+        '/register' =>  [[UserController::class,        'register'],    false],
+        '/logout'   =>  [[UserController::class,        'register'],    true],
     ],
 
     'POST' => [

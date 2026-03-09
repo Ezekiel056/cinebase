@@ -11,6 +11,8 @@ abstract class Controller
         extract($data); // Recupere les variables passés au renderer et les exposes.
 
         $viewPath = dirname(__DIR__) . "/Views/{$view}.php"; // recupere le chemin du fichier php correspondant a la vue demandée
+        $css = file_exists(dirname(__DIR__, 2) . "/public/styles/{$view}.css") ? $view : "";
+
 
         //le fichier existe bien ?
         if (!file_exists($viewPath)) {
