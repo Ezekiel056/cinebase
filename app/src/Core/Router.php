@@ -16,18 +16,19 @@ final class Router
 
         foreach (ROUTES as $method => $methodRoutes) {
             foreach ($methodRoutes as $path => $action) {
-                [$action, $auth] = $action;
-                $this->setRoute($method, $path, $action, $auth);
+                [$action, $auth, $layout] = $action;
+                $this->setRoute($method, $path, $action, $auth, $layout);
             }
         }
     }
 
 
-    private function setRoute(string $method, string $path, array $action, bool $auth)
+    private function setRoute(string $method, string $path, array $action, bool $auth, string $layout)
     {
         $this->routes["{$method} {$path}"] = [
             'action' => $action,
-            'auth' => $auth
+            'auth' => $auth,
+            'layout' => $layout
         ];
     }
 
@@ -62,8 +63,8 @@ final class Router
             $pattern = preg_replace('#:([a-zA-Z]+)#', '([^/]+)', $routePath);
             $pattern = "#^{$pattern}$#";
 
-            if (preg_match($pattern, $uri, $matches)) {
 
+            if (preg_match($pattern, $uri, $matches)) {
                 // Vérification auth
                 if ($config['auth'] && !Session::isAuthenticated()) {
 
@@ -76,6 +77,7 @@ final class Router
                 [$controllerClass, $methodName] = $config['action'];
 
                 $controller = new $controllerClass();
+                $controller->setLayout($config['layout']);
                 $controller->$methodName(...$matches);
 
                 return;

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+require dirname(__DIR__) . '/core/Layouts.php';
 abstract class Controller
 {
+    protected string $layout;
+
     protected function render(string $view, array $data = []): void
     {
         extract($data); // Recupere les variables passés au renderer et les exposes.
@@ -19,6 +22,11 @@ abstract class Controller
             throw new \RuntimeException("Vue introuvable : {$view}");
         }
 
-        require dirname(__DIR__) . '/Views/layout.php';
+        require dirname(__DIR__) . '/Views/Layouts/' . LAYOUTS[$this->layout] . '.php';
+    }
+
+    public function setLayout(string $layout)
+    {
+        $this->layout = $layout;
     }
 }
