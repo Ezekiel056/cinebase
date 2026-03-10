@@ -23,12 +23,14 @@ final class Session
         return isset($_SESSION['user']);
     }
 
-    public static function create(User $user): void
+    public static function create($user): void
     {
+        self::destroy();
+
         $_SESSION['user'] = [
-            'id' => $user->getId(),
-            'email' => $user->getEmail(),
-            'username' => $user->getUsername()
+            'id' => $user["id"],
+            'email' => $user['emails'],
+            'username' => $user['username']
         ];
     }
 
@@ -66,5 +68,31 @@ final class Session
     private static function deleteFlashMessages(): void
     {
         unset($_SESSION['flash']);
+    }
+
+
+    /*
+    * -- FORM DATA ---
+    */
+
+    public static function getFormData(string $varName): mixed
+    {
+        $formData = $_SESSION['form-data'][$varName] ?? null;
+        return $formData;
+    }
+
+    public static function setFormData(string $varName, $value): void
+    {
+        $_SESSION['form-data'][$varName] = $value;
+    }
+
+    public static function resetFormData()
+    {
+        self::unsetFormData();
+    }
+
+    private static function unsetFormData(): void
+    {
+        unset($_SESSION['form-data']);
     }
 }

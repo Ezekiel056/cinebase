@@ -26,4 +26,27 @@ class User extends Model
 
         return false;
     }
+
+    public function getUserByEmail(string $email): bool|array
+    {
+        if ($email !== "" && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            $stmt = $this->mysql->prepare('SELECT * FROM Users WHERE email=:email');
+            $stmt->execute(['email' => $email]);
+            $user = $stmt->fetch();
+            return $user;
+        }
+
+        return false;
+    }
+
+    public function checkPassword(string $inputPassword, string $userPassword): bool
+    {
+        return password_verify($inputPassword, $userPassword);
+    }
+
+    public function generatePasswordhash(string $password)
+    {
+        return password_hash($password, PASSWORD_ARGON2ID);
+    }
 }

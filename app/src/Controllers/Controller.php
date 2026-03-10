@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+
 require dirname(__DIR__) . '/core/Layouts.php';
 abstract class Controller
 {
     protected string $layout;
+
+
 
     protected function render(string $view, array $data = []): void
     {
@@ -33,5 +36,11 @@ abstract class Controller
     protected function getPost(string $key, mixed $default = null): mixed
     {
         return $_POST[$key] ?? '';
+    }
+
+    protected function redirect(string $path)
+    {
+        header("location: {$path}");
+        exit;
     }
 }

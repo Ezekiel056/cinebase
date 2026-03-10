@@ -24,3 +24,71 @@
 body {
   background-color: var(--background-color);
 }
+
+.flash-container {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.flash-messages {
+  width: 80%;
+  padding: 14px 18px;
+  border-radius: 6px;
+
+  color: white;
+  font-size: 14px;
+  line-height: 1.4;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+  animation:
+    flash-in 0.4s ease,
+    flash-out 0.4s ease 4.6s forwards;
+}
+
+/* types */
+
+.flash-messages.success {
+  background: #2ecc71;
+}
+
+.flash-messages.error {
+  background: #e74c3c;
+}
+
+.flash-messages.warning {
+  background: #f39c12;
+}
+
+.flash-messages.info {
+  background: #1084f7;
+}
+
+.flash-messages p {
+  margin: 0;
+}
+
+/* animation apparition */
+
+@keyframes flash-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* animation disparition */
+
+@keyframes flash-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
