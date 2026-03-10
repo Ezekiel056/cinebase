@@ -1,3 +1,13 @@
+<?php
+
+use App\Core\Flash;
+
+$flash = new Flash;
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +34,8 @@
     <footer>
         <p>footer goes here</p>
     </footer>
+
+    <?php $flash->handleFlashMessages() ?>
 </body>
 
 </html>

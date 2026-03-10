@@ -46,6 +46,11 @@ final class Session
         ];
     }
 
+
+    /*
+    *   --- FLASH MESSAGES MANAGEMENT ---
+    */
+
     public static function isFlashMessages()
     {
         return isset($_SESSION['flash']);
@@ -55,7 +60,6 @@ final class Session
     {
         $flash = $_SESSION['flash'];
         self::deleteFlashMessages();
-        var_dump($flash);
         return $flash;
     }
 

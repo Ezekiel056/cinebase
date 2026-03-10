@@ -1,4 +1,14 @@
+<?php
+
+use App\Core\Flash;
+
+$flash = new Flash;
+
+?>
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -18,5 +28,7 @@
     <main>
         <?php require $viewPath; ?>
     </main>
+    <?php $flash->handleFlashMessages() ?>
+</body>
 
 </html>
