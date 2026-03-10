@@ -17,6 +17,8 @@
 
   --primary-text-color: var(--primary-color);
   --secondary-text-color: #fff;
+
+  --links-color: #8a85d3;
 }
 
 body {

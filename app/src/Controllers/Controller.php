@@ -29,4 +29,9 @@ abstract class Controller
     {
         $this->layout = $layout;
     }
+
+    protected function getPost(string $key, mixed $default = null): mixed
+    {
+        return $_POST[$key] ?? '';
+    }
 }

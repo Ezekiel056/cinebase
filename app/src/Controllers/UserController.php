@@ -11,4 +11,13 @@ class UserController extends Controller
     {
         $this->render("login",);
     }
+
+    public function doLogin()
+    {
+        $email = $this->getPost("email");
+        $password = $this->getPost("password");
+
+        if (!$email) {
+        }
+    }
 }

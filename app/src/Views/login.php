@@ -32,6 +32,10 @@
                     Se connecter
                 </button>
             </form>
+            <div class="register-link">
+                <p>Vous n'avez pas de compte ?</p>
+                <a href="/register">Inscrivez-vous</a>
+            </div>
         </div>
     </main>
 </body>

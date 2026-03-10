@@ -21,8 +21,9 @@ const ROUTES = [
 
     'POST' => [
         '/films/delete/:id'   =>  [[MovieController::class, 'register'], true, 'main'],
-        '/films/add'          =>  [[MovieController::class, 'insert_film'], true, 'main'],
-        '/films/edit'         =>  [[MovieController::class, 'update_film'], true, 'main'],
+        '/login'             =>  [[UserController::class,  'doLogin'], true, 'main'],
+        '/films/add'          =>  [[MovieController::class, 'insertFilm'], true, 'main'],
+        '/films/edit'         =>  [[MovieController::class, 'updateFilm'], true, 'main'],
 
     ]
 
