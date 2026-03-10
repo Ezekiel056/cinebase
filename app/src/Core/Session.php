@@ -29,7 +29,7 @@ final class Session
 
         $_SESSION['user'] = [
             'id' => $user["id"],
-            'email' => $user['emails'],
+            'email' => $user['email'],
             'username' => $user['username']
         ];
     }

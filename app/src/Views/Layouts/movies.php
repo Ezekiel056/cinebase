@@ -26,7 +26,10 @@ $flash = new Flash;
 
 <body>
     <header>
-        <p>header goes here</p>
+        <div class="site-logo-container">
+            <i class="fa-regular fa-circle-play"></i>
+            <h1>CinéBase</h1>
+        </div>
     </header>
     <main>
         <?php require $viewPath; ?>

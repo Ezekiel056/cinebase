@@ -6,24 +6,19 @@ header {
 }
 
 .site-logo-container {
-  display: inline-block;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
   background: linear-gradient(135deg, #b88a00, #e5b200, #8c6900);
   border-radius: 6px;
   justify-self: start;
-}
-
-.header-logo {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-items: start;
-  p {
-    color: var(--primary-text-color);
+  h1 {
+    color: black;
     font-size: 2rem;
   }
   i {
     color: black;
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 }

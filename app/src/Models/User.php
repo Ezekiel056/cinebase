@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use PDOException;
 
 class User extends Model
 {
@@ -38,6 +39,23 @@ class User extends Model
         }
 
         return false;
+    }
+
+    public function create(array $data): bool
+    {
+        $stmt = $this->mysql->prepare('INSERT INTO users (email, password, username) VALUES (:email, :password, :username)');
+        try {
+
+            $result = $stmt->execute([
+                'email' => $data["email"],
+                'password' => $this->generatePasswordhash($data["password"]),
+                'username' => $data["username"],
+            ]);
+
+            return $result;
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
     public function checkPassword(string $inputPassword, string $userPassword): bool

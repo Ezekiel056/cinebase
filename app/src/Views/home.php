@@ -1,23 +1,29 @@
 <div class="home-container">
-
-    <h2>A l'affiche</h2>
-    <div class="featured-films">
-        <?php foreach (array_slice($movies, 0, 3) as $movie): ?>
-            <div class="film-card large">
-
-                <div class="film-card-poster">
-                    <img
-                        src="<?= htmlspecialchars($movie['poster_url']) ?>"
-                        alt="<?= htmlspecialchars($movie['title']) ?>"
-                        class="poster">
-
-                </div>
-                <div class="film-title">
-                    <h3><?= htmlspecialchars($movie['title']) ?></h3>
-                </div>
-
-
-            </div>
-        <?php endforeach ?>
+    <div class="hero-section">
+        <h2>Votre collection</h2>
+        <p>Cinématographique</p>
+        <p class="hero-">Gérez et explorez votre bibliothèque de films avec élégance</p>
+        <button class="large">Afficher les <?= $moviesCount ?> films</button>
     </div>
+
+
+
+    <section class="apercu-collection">
+        <hr>
+        <h2>Les derniers films ajoutés</h2>
+
+        <ul class="movies-list">
+            <?php foreach ($lastMovies as $movie): ?>
+                <li class="movie-item">
+                    <h3><?= htmlspecialchars(strtoupper($movie['title'])) ?> - <?= htmlspecialchars($movie['year']) ?> - <?= htmlspecialchars($movie['director']) ?></h3>
+                    <div class="movie-poster-container">
+                        <img
+                            src="<?= htmlspecialchars($movie['poster_url']) ?>"
+                            alt="<?= htmlspecialchars($movie['title']) ?>"
+                            class="poster">
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </section>
 </div>

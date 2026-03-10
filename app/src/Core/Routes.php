@@ -20,10 +20,11 @@ const ROUTES = [
     ],
 
     'POST' => [
-        '/login'             =>  [[UserController::class,  'doLogin'], false, 'default'],
-        '/films/delete/:id'   =>  [[MovieController::class, 'register'], true, 'main'],
-        '/films/add'          =>  [[MovieController::class, 'insertFilm'], true, 'main'],
-        '/films/edit'         =>  [[MovieController::class, 'updateFilm'], true, 'main'],
+        '/login'             =>  [[UserController::class,  'doLogin'], false, ''],
+        '/register'          =>  [[UserController::class,  'doRegister'], false, ''],
+        '/films/delete/:id'   =>  [[MovieController::class, 'deleteMovie'], true, ''],
+        '/films/add'          =>  [[MovieController::class, 'insertMovie'], true, ''],
+        '/films/edit'         =>  [[MovieController::class, 'updateMovie'], true, ''],
 
     ]
 

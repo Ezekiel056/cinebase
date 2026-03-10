@@ -33,9 +33,13 @@ abstract class Controller
         $this->layout = $layout;
     }
 
-    protected function getPost(string $key, mixed $default = null): mixed
+    protected function getPost(string $key, bool $htmlspecialchar = false, mixed $default = null): mixed
     {
-        return $_POST[$key] ?? '';
+        $post = $_POST[$key] ?? $default;
+        if ($post && is_string($post) && $htmlspecialchar) {
+            $post = htmlspecialchars($post);
+        }
+        return $post;
     }
 
     protected function redirect(string $path)
