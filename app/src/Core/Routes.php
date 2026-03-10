@@ -10,8 +10,8 @@ const ROUTES = [
     'GET' => [
 
         '/'             =>  [[MovieController::class, 'home'], false, 'main'],
-        '/films'         =>  [[MovieController::class, 'home'], false, 'main'],
-        '/films/:id'     =>  [[MovieController::class, 'show'], false, 'main'],
+        '/films'         =>  [[MovieController::class, 'movies'], false, 'main'],
+        '/films/:id'     =>  [[MovieController::class, 'movie'], false, 'main'],
         '/login'        =>  [[UserController::class,  'login'], false, 'default'],
         '/register'     =>  [[UserController::class,  'register'], false, 'default'],
         '/logout'       =>  [[UserController::class,  'logout'], true, 'default'],
