@@ -11,12 +11,12 @@ const ROUTES = [
 
         '/'             =>  [[MovieController::class, 'home'], false, 'main'],
         '/films'         =>  [[MovieController::class, 'movies'], false, 'main'],
+        '/films/add'     =>  [[MovieController::class, 'add'], true, 'main'],
+        '/films/edit'    =>  [[MovieController::class, 'edit'], true, 'main'],
         '/films/:id'     =>  [[MovieController::class, 'movie'], false, 'main'],
         '/login'        =>  [[UserController::class,  'login'], false, 'default'],
         '/register'     =>  [[UserController::class,  'register'], false, 'default'],
         '/logout'       =>  [[UserController::class,  'logout'], true, 'default'],
-        '/films/add'     =>  [[MovieController::class, 'add'], true, 'main'],
-        '/films/edit'    =>  [[MovieController::class, 'edit'], true, 'main'],
     ],
 
     'POST' => [

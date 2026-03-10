@@ -30,7 +30,8 @@ class Movie extends Model
         if ($id > 0) {
 
             $stmt = $this->mysql->prepare('SELECT * FROM Movies WHERE id=:id');
-            $movies = $stmt->execute(['id' => $id]);
+            $stmt->execute(['id' => $id]);
+            $movies = $stmt->fetch();
             return $movies;
         }
 

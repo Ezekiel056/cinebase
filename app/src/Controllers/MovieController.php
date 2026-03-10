@@ -24,7 +24,7 @@ class MovieController extends Controller
         $this->render("movies", compact('movies'));
     }
 
-    public function movie(int $id)
+    public function movie(string $id)
     {
         $moviesModele = new Movie;
         $movie = $moviesModele->getMovieById($id);
@@ -32,7 +32,7 @@ class MovieController extends Controller
             $this->render("movie", compact('movie'));
         } else {
             Session::setFlashMessage("error", ["Erreur lors de l'accès au film"]);
-            $this->render("movies", compact('movies'));
+            $this->redirect("/films");
         }
     }
 }
