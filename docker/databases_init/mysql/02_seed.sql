@@ -95,8 +95,10 @@ INSERT INTO movies (title, director, year, duration, synopsis, poster_url) VALUE
 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg');
 
 
-INSERT INTO `users` ( `email`, `password`, `username`) VALUES
-('francois.crequer@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$REVqSGsvTkpwam1Ob3k2NQ$3BRYetKAP0sCxqjEcc0QjffKjmCJzmG9NgcCVGWvlho', 'ezekiel-056');
+
+INSERT INTO `users` (`email`, `password`, `username`) VALUES
+('test@mail.com', '$argon2id$v=19$m=65536,t=4,p=1$YmhzWXVrSUhLRjF2LzFYWA$lOaVte9enguiu4KoKR/JmiIJ9ahrsn/mwYeO7daispo', 'test-user');
+
 
 
 INSERT INTO movie_genres (movie_id, genre_id) VALUES
