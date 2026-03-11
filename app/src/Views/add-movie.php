@@ -17,6 +17,14 @@
             <label for="movie-title">Titre</label>
             <input type="text" id="movie-title" name="title" value="<?= $movie['title'] ?>">
         </div>
+        <div class="form-group">
+            <label for="movie-genre">genre</label>
+            <select name="genre" id="movie-genre">
+                <?php foreach ($genres as $genre): ?>
+                    <option value="<?= $genre['id'] ?>" name="movie-genre"><?= $genre['name'] ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
 
         <div class="form-group">
             <label for="movie-director">Realisteur</label>

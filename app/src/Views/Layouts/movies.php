@@ -44,7 +44,7 @@ $flash = new Flash;
         <?php require $viewPath; ?>
     </main>
     <footer>
-        <p>footer goes here</p>
+       
     </footer>
 
     <?php $flash->handleFlashMessages() ?>

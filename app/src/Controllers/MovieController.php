@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Movie;
+use App\Models\Genre;
+
 use App\Core\Session;
 
 class MovieController extends Controller
@@ -31,7 +33,11 @@ class MovieController extends Controller
         $moviesModele = new Movie;
         $movie = $moviesModele->getMovieById((int) $id);
         if ($movie) {
-            $this->render("movie", compact('movie'));
+
+            $genreModele = new Genre;
+            $genres = $genreModele->getGenresByMovieId($movie['id']);
+
+            $this->render("movie", compact('movie', 'genres'));
         } else {
             Session::setFlashMessage("error", ["Erreur lors de l'accès au film"]);
             $this->redirect("/films");
@@ -41,6 +47,7 @@ class MovieController extends Controller
     public function edit(string $id)
     {
         $moviesModele = new Movie;
+        $genresModele = new Genre;
         $movie = $moviesModele->getMovieById((int) $id);
 
         if ($movie) {
@@ -53,6 +60,7 @@ class MovieController extends Controller
                 $movie['duration'] = Session::getFormData('duration');
                 $movie['synopsis'] = Session::getFormData('synopsis');
                 $movie['year'] = Session::getFormData('year');
+
                 Session::resetFormData();
             }
             $this->render("edit-movie", compact('movie'));
@@ -64,6 +72,8 @@ class MovieController extends Controller
 
     public function add()
     {
+        $genresModele = new Genre;
+        $genres = $genresModele->getGenres();
 
         $movie['poster_url'] = Session::getFormData('poster_url');
         $movie['director'] = Session::getFormData('director');
@@ -72,7 +82,7 @@ class MovieController extends Controller
         $movie['synopsis'] = Session::getFormData('synopsis');
         $movie['year'] = Session::getFormData('year');
 
-        $this->render('add-movie', compact('movie'));
+        $this->render('add-movie', compact('movie', 'genres'));
     }
 
 
@@ -159,13 +169,18 @@ class MovieController extends Controller
 
     public function insertMovie()
     {
+
         $errors = [];
+        $genreModel = new Genre;
+
+
         $url = trim($this->getPost("poster_url", true, ""));
         $title = trim($this->getPost("title", true, ""));
         $director = trim($this->getPost("director", true, ""));
         $year = trim($this->getPost("year", false, ""));
         $duration = trim($this->getPost("duration", false, 0));
         $synopsis = trim($this->getPost("synopsis", true, ""));
+        $genreId = trim($this->getPost("genre", false, 0));
 
         Session::resetFormData();
         Session::setFormData("poster_url", $url);
@@ -174,6 +189,7 @@ class MovieController extends Controller
         Session::setFormData("duration", $duration);
         Session::setFormData("year", $year);
         Session::setFormData("synopsis", $synopsis);
+        Session::setFormData("genreId", $genreId);
 
 
         if (!$url) {
@@ -200,6 +216,13 @@ class MovieController extends Controller
             $errors[] = "Veuillez renseigner la durée du film / durée incorrecte";
         }
 
+        if ($genreId > 0) {
+            $genre = $genreModel->getGenreById($genreId);
+            if (!$genre) {
+                $genreId = 0;
+            }
+        }
+
 
 
         if ($errors) {
@@ -210,7 +233,7 @@ class MovieController extends Controller
 
         $movieModel = new Movie();
 
-        $add = $movieModel->addMovie([
+        $movieId = $movieModel->addMovie([
             'title' => $title,
             'director' => $director,
             'year' => $year,
@@ -219,10 +242,13 @@ class MovieController extends Controller
             'poster_url' => $url
         ]);
 
-        if ($add > 0) {
+        if ($movieId > 0) {
+            if ($genreId > 0) {
+                $genreModel->addMovieGenre($movieId, $genreId);
+            }
             Session::resetFormData();
             Session::setFlashMessage("success", ["Film ajouté avec succès"]);
-            $this->redirect("/films/{$add}");
+            $this->redirect("/films/{$movieId}");
         } else {
             Session::setFlashMessage("error", ["Erreur lors de la mise à jour des données"]);
             $this->redirect("/films/add"); // <- Echec , on reste sur edit

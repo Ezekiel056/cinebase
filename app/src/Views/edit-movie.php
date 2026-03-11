@@ -18,6 +18,9 @@
             <input type="text" id="movie-title" name="title" value="<?= $movie['title'] ?>">
         </div>
 
+
+
+
         <div class="form-group">
             <label for="movie-director">Realisteur</label>
             <input type="text" id="movie-director" name="director" value="<?= $movie['director'] ?>">

@@ -32,11 +32,17 @@ function formatDuration(int $minutes): string
     <div class="movie-infos">
         <p><?= strtoupper(htmlspecialchars($movie['director'])) ?> - <?= (($movie['year'])) ?></p>
         <p><?= (formatDuration($movie['duration'])) ?></p>
+        <div class="genre-tags">
+            <?php foreach ($genres as $genre): ?>
+                <p class="genre-tag"><?= $genre['name'] ?></p>
+            <?php endforeach ?>
+        </div>
         <a href="/films/edit/<?= $movie['id'] ?>"><button type="button">Modifier la fiche du film</button></a>
         <hr>
         <p>
             <?= (htmlspecialchars($movie['synopsis'])) ?>
         </p>
+
     </div>
 
 

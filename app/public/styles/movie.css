@@ -4,7 +4,9 @@ main {
 }
 
 .back-to-movies {
-  width: 100%;
+  align-self: center;
+
+  width: 80%;
   margin: 30px 0 20px;
   button {
     width: 100%;
@@ -71,7 +73,7 @@ main {
     display: flex;
     gap: 10px;
   }
-  p {
+  > p {
     font-weight: bold;
     font-size: 1.2rem;
   }
@@ -95,6 +97,16 @@ hr {
   border-radius: 2px;
   box-shadow: #caa22b5f 0px 0px 3px 2px;
   margin-bottom: 20px;
+}
+
+.genre-tag {
+  border: none;
+  border-radius: 12px;
+  padding: 5px 10px;
+  background-color: var(--primary-color);
+  color: black;
+  font-size: 1rem;
+  font-weight: 100;
 }
 
 @media (min-width: 1024px) {
