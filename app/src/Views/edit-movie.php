@@ -38,5 +38,6 @@
         </div>
 
         <button class="valid-form-button" type="submit">Valider</button>
+        <button class="valid-form-button Destructive" type="button" onclick="deleteMovie(<?= $movie['id'] ?>)">Supprimer le film</button>
     </form>
 </section>

@@ -19,6 +19,13 @@ class UserController extends Controller
         $this->render("register");
     }
 
+    public function logout()
+    {
+        Session::destroy();
+        Session::setFlashMessage("success", ["Vous êtes deconnecté"]);
+        $this->redirect("/");
+    }
+
 
     // Gere la demande de connexion de l'utilisateur
     public function doLogin()
@@ -52,6 +59,8 @@ class UserController extends Controller
         $user = $userModel->getUserByEmail($email);
         if ($user && $userModel->checkPassword($password, $user['password'])) {
             Session::create($user);
+            Session::setFlashMessage("success", ["Bonjour {$user['username']}"]);
+            $this->redirect("/");
             $this->redirect("/"); // <-- OK connexion reussie, on passe au home.
         } else {
             Session::setFlashMessage("error", ["Accès refusé"]);

@@ -18,6 +18,7 @@ abstract class Controller
 
         $viewPath = dirname(__DIR__) . "/Views/{$view}.php"; // recupere le chemin du fichier php correspondant a la vue demandée
         $css = file_exists(dirname(__DIR__, 2) . "/public/styles/{$view}.css") ? $view : "";
+        $js = file_exists(dirname(__DIR__, 2) . "/public/scripts/{$view}.js") ? $view : "";
 
 
         //le fichier existe bien ?

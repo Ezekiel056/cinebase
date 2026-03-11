@@ -1,6 +1,10 @@
 <div class="movies-container">
+    <div class="add-movie-btn">
+        <p>Vous ne trouvez pas votre film ? ajoutez-le !</p>
+        <a href="/films/add"><button class="large"> Ajouter un film</button></a>
+    </div>
     <div class="search-container">
-
+        <input type="text" placeholder="Recherchez un titre de film">
     </div>
 
     <section class="movies">

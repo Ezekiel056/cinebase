@@ -77,4 +77,13 @@ class Movie extends Model
             return $this->mysql->lastInsertId();
         } else return 0;
     }
+
+    public function deleteMovie(int $id): bool
+    {
+        if (is_numeric($id)) {
+            $stmt = $this->mysql->prepare('DELETE FROM movies WHERE id=:id');
+            return $stmt->execute(["id" => $id]);
+        }
+        return false;
+    }
 }

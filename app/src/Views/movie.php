@@ -8,11 +8,15 @@ function formatDuration(int $minutes): string
     return sprintf('%02dh %02dm', $hours, $mins);
 }
 ?>
+
+
 <div class="movie-container">
-    <button class="back-to-movies" onclick="history.back()">
-        <i class="fa-solid fa-arrow-left"></i>
-        Retour à la liste des films
-    </button>
+    <a href="/films" class="back-to-movies">
+        <button>
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour à la liste des films
+        </button>
+    </a>
     <div class="movie-poster-container">
         <img
             src="<?= htmlspecialchars($movie['poster_url']) ?>"

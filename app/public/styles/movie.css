@@ -4,9 +4,11 @@ main {
 }
 
 .back-to-movies {
-  align-self: center;
-  width: 80%;
+  width: 100%;
   margin: 30px 0 20px;
+  button {
+    width: 100%;
+  }
 }
 
 .movie-container {
@@ -93,4 +95,30 @@ hr {
   border-radius: 2px;
   box-shadow: #caa22b5f 0px 0px 3px 2px;
   margin-bottom: 20px;
+}
+
+@media (min-width: 1024px) {
+  main {
+    margin: 0 200px;
+  }
+  .movie-container {
+    align-self: center;
+    display: grid;
+    grid-template-areas:
+      "button button"
+      "poster infos";
+  }
+
+  .movie-poster-container {
+    grid-area: poster;
+  }
+
+  .back-to-movies {
+    grid-area: button;
+    width: 250px;
+  }
+
+  .movie-infos {
+    grid-area: infos;
+  }
 }

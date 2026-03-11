@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Flash;
+use App\Core\Session;
 
 $flash = new Flash;
 
@@ -21,6 +22,10 @@ $flash = new Flash;
     <?php endif ?>
 
     <script src="https://kit.fontawesome.com/616adc9fde.js" crossorigin="anonymous"></script>
+    <?php if ($js) : ?>
+        <script src="/scripts/<?= $js ?>.js?v=<?= time() ?>" defer></script>
+    <?php endif ?>
+
     <title>$pageTitle</title>
 </head>
 
@@ -32,6 +37,8 @@ $flash = new Flash;
                 <h1>CinéBase</h1>
             </div>
         </a>
+
+        <a href="<?= Session::isAuthenticated() ? "/logout" : "/login" ?>"><button class="add-movie"><?= Session::isAuthenticated() ? "Se deconnecter" : "Se connecter" ?></button></a>
     </header>
     <main>
         <?php require $viewPath; ?>

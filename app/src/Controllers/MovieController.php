@@ -228,4 +228,23 @@ class MovieController extends Controller
             $this->redirect("/films/add"); // <- Echec , on reste sur edit
         }
     }
+
+    public function deleteMovie(string $id)
+    {
+        if (!is_numeric($id)) {
+            Session::setFlashMessage("error", ["Film introuvable"]);
+            $this->redirect("/films");
+        }
+
+        $movieModel = new Movie();
+        $deleted = $movieModel->deleteMovie((int) $id);
+
+        if ($deleted) {
+            Session::setFlashMessage("success", ["Film supprimé avec succès"]);
+        } else {
+            Session::setFlashMessage("error", ["Erreur lors de la suppression"]);
+        }
+
+        $this->redirect("/films");
+    }
 }
