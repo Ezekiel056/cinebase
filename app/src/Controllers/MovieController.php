@@ -8,6 +8,8 @@ use App\Core\Session;
 class MovieController extends Controller
 {
 
+
+    // FONCTIONS GET
     public function home()
     {
         $moviesModele = new Movie;
@@ -49,7 +51,7 @@ class MovieController extends Controller
                 $movie['director'] = Session::getFormData('director');
                 $movie['title'] = Session::getFormData('title');
                 $movie['duration'] = Session::getFormData('duration');
-                $movie['description'] = Session::getFormData('description');
+                $movie['synopsis'] = Session::getFormData('synopsis');
                 $movie['year'] = Session::getFormData('year');
                 Session::resetFormData();
             }
@@ -59,6 +61,23 @@ class MovieController extends Controller
             $this->redirect("/films");
         }
     }
+
+    public function add()
+    {
+
+        $movie['poster_url'] = Session::getFormData('poster_url');
+        $movie['director'] = Session::getFormData('director');
+        $movie['title'] = Session::getFormData('title');
+        $movie['duration'] = Session::getFormData('duration');
+        $movie['synopsis'] = Session::getFormData('synopsis');
+        $movie['year'] = Session::getFormData('year');
+
+        $this->render('add-movie', compact('movie'));
+    }
+
+
+
+    // FONCTIONS POST
 
     public function updateMovie()
     {
@@ -135,6 +154,78 @@ class MovieController extends Controller
         } else {
             Session::setFlashMessage("error", ["Erreur lors de la mise à jour des données"]);
             $this->redirect("/films/edit/" . $id); // <- Echec , on reste sur edit
+        }
+    }
+
+    public function insertMovie()
+    {
+        $errors = [];
+        $url = trim($this->getPost("poster_url", true, ""));
+        $title = trim($this->getPost("title", true, ""));
+        $director = trim($this->getPost("director", true, ""));
+        $year = trim($this->getPost("year", false, ""));
+        $duration = trim($this->getPost("duration", false, 0));
+        $synopsis = trim($this->getPost("synopsis", true, ""));
+
+        Session::resetFormData();
+        Session::setFormData("poster_url", $url);
+        Session::setFormData("title", $title);
+        Session::setFormData("director", $director);
+        Session::setFormData("duration", $duration);
+        Session::setFormData("year", $year);
+        Session::setFormData("synopsis", $synopsis);
+
+
+        if (!$url) {
+            $errors[] = "Veuillez indiquer l'url de l'affiche";
+        }
+
+        if (!$title) {
+            $errors[] = "Veuillez renseigner le titre du film";
+        }
+
+        if (!$director) {
+            $errors[] = "Veuillez renseigner le realisateur";
+        }
+
+        if (!$year || !is_numeric($year)) {
+            $errors[] = "Veuillez indiquer l'année / année invalide";
+        }
+
+        if (!$synopsis) {
+            $errors[] = "Veuillez renseigner le synopsis";
+        }
+
+        if (!$duration || !is_numeric($duration) || !($duration > 0)) {
+            $errors[] = "Veuillez renseigner la durée du film / durée incorrecte";
+        }
+
+
+
+        if ($errors) {
+
+            Session::setFlashMessage("error", $errors);
+            $this->redirect("/films/add"); // <- Echec , on reste sur edit
+        }
+
+        $movieModel = new Movie();
+
+        $add = $movieModel->addMovie([
+            'title' => $title,
+            'director' => $director,
+            'year' => $year,
+            'duration' => $duration,
+            'synopsis' => $synopsis,
+            'poster_url' => $url
+        ]);
+
+        if ($add > 0) {
+            Session::resetFormData();
+            Session::setFlashMessage("success", ["Film ajouté avec succès"]);
+            $this->redirect("/films/{$add}");
+        } else {
+            Session::setFlashMessage("error", ["Erreur lors de la mise à jour des données"]);
+            $this->redirect("/films/add"); // <- Echec , on reste sur edit
         }
     }
 }
