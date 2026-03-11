@@ -13,7 +13,7 @@ CREATE TABLE users (
     
     CONSTRAINT uq_users_email UNIQUE (email)
 )CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;;
+  COLLATE utf8mb4_general_ci;;
 
 CREATE TABLE movies (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -25,13 +25,13 @@ CREATE TABLE movies (
     poster_url varchar(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 )CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;;
+  COLLATE utf8mb4_general_ci;;
 
 CREATE TABLE genres (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL  
 )CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
+  COLLATE utf8mb4_general_ci;
 
 CREATE TABLE movie_genres (
     movie_id INT UNSIGNED,
@@ -51,5 +51,5 @@ CREATE TABLE movie_genres (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 )CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;;
+  COLLATE utf8mb4_general_ci;;
 

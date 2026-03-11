@@ -94,6 +94,11 @@ final class Session
         self::unsetFormData();
     }
 
+    public static function isFormDataSet(): bool
+    {
+        return isset($_SESSION['form-data']);
+    }
+
     private static function unsetFormData(): void
     {
         unset($_SESSION['form-data']);

@@ -24,7 +24,7 @@ const ROUTES = [
         '/register'          =>  [[UserController::class,  'doRegister'], false, ''],
         //    '/films/delete/:id'   =>  [[MovieController::class, 'deleteMovie'], true, ''],
         //    '/films/add'          =>  [[MovieController::class, 'insertMovie'], true, ''],
-        //    '/films/edit'         =>  [[MovieController::class, 'updateMovie'], true, ''],
+        '/films/edit'         =>  [[MovieController::class, 'updateMovie'], true, ''],
 
     ]
 

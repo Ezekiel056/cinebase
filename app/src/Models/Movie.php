@@ -47,4 +47,19 @@ class Movie extends Model
         $movies = $stmt->fetchAll();
         return $movies;
     }
+
+
+    public function updateMovie($data)
+    {
+        $stmt = $this->mysql->prepare('UPDATE movies SET title=:title, director=:director, year=:year, duration=:duration, synopsis=:synopsis, poster_url=:poster_url WHERE id=:id');
+        $stmt->bindValue('director', $data['director']);
+        $stmt->bindValue('title', $data['title']);
+        $stmt->bindValue('year', $data['year']);
+        $stmt->bindValue('duration', $data['duration']);
+        $stmt->bindValue('synopsis', $data['synopsis']);
+        $stmt->bindValue('poster_url', $data['poster_url']);
+        $stmt->bindValue('id', $data['id']);
+
+        return $stmt->execute();
+    }
 }
