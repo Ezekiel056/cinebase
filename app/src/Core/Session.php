@@ -78,6 +78,9 @@ final class Session
     public static function getFormData(string $varName): mixed
     {
         $formData = $_SESSION['form-data'][$varName] ?? null;
+        if ($formData && is_string($formData)) {
+            $formData = htmlspecialchars($formData);
+        }
         return $formData;
     }
 

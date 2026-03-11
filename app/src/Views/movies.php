@@ -7,7 +7,7 @@
         <ul class="movies-list">
             <?php foreach ($movies as $movie): ?>
                 <li class="movie-item">
-                    <a href="/film/<?= $movie['id'] ?>">
+                    <a href="/films/<?= $movie['id'] ?>">
                         <div class="movie-poster-container">
                             <img
                                 src="<?= htmlspecialchars($movie['poster_url']) ?>"
